@@ -1,5 +1,0 @@
-.footer {margin-top: 5px; width:960px;height: 38px; line-height: 38px; font-family: Helvetica, Verdana, Arial, sans-serif; font-size: 18px;}
-.footer .webgl-logo, .title, .fullscreen {height: 100%; display: inline-block; background: transparent center no-repeat;}
-.footer .webgl-logo {background-image: url('webgl-logo.png'); width: 204px; float: left;}
-.footer .title {margin-right: 10px; float: right;}
-.footer .fullscreen {background-image: url('fullscreen.png'); width: 38px; float: right;}

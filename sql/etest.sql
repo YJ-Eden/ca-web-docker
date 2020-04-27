@@ -11,7 +11,7 @@
  Target Server Version : 50719
  File Encoding         : utf-8
 
- Date: 04/24/2020 23:25:51 PM
+ Date: 04/27/2020 16:59:26 PM
 */
 
 create database `etest` default character set utf8 collate utf8_general_ci;
@@ -23,10 +23,10 @@ use etest;
 -- ----------------------------
 DROP TABLE IF EXISTS `basic_data`;
 CREATE TABLE `basic_data` (
-  `type` smallint(10) NOT NULL COMMENT '基础数据类型',
-  `name` varchar(50) DEFAULT NULL COMMENT '基础类型名称',
-  `basic_code` varchar(50) NOT NULL COMMENT '基础数据编号',
-  `basic_name` varchar(50) DEFAULT NULL COMMENT '基础编号名称',
+  `type` smallint(10) NOT NULL COMMENT 'åŸºç¡€æ•°æ®ç±»åž‹',
+  `name` varchar(50) DEFAULT NULL COMMENT 'åŸºç¡€ç±»åž‹åç§°',
+  `basic_code` varchar(50) NOT NULL COMMENT 'åŸºç¡€æ•°æ®ç¼–å·',
+  `basic_name` varchar(50) DEFAULT NULL COMMENT 'åŸºç¡€ç¼–å·åç§°',
   PRIMARY KEY (`type`,`basic_code`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -43,12 +43,12 @@ COMMIT;
 DROP TABLE IF EXISTS `log`;
 CREATE TABLE `log` (
   `id` bigint(40) NOT NULL AUTO_INCREMENT COMMENT 'id',
-  `content` varchar(40) DEFAULT NULL COMMENT '日志内容',
-  `type` tinyint(2) DEFAULT NULL COMMENT '日志类型（1：学生；2：教师；3：超级管理员）',
-  `person_id` bigint(40) DEFAULT NULL COMMENT '对应的人员ID',
-  `person_name` varchar(40) DEFAULT NULL COMMENT '对应的人员姓名',
-  `log_time` datetime DEFAULT NULL COMMENT '日志时间',
-  `remark` varchar(40) DEFAULT NULL COMMENT '备注',
+  `content` varchar(40) DEFAULT NULL COMMENT 'æ—¥å¿—å†…å®¹',
+  `type` tinyint(2) DEFAULT NULL COMMENT 'æ—¥å¿—ç±»åž‹ï¼ˆ1ï¼šå­¦ç”Ÿï¼›2ï¼šæ•™å¸ˆï¼›3ï¼šè¶…çº§ç®¡ç†å‘˜ï¼‰',
+  `person_id` bigint(40) DEFAULT NULL COMMENT 'å¯¹åº”çš„äººå‘˜ID',
+  `person_name` varchar(40) DEFAULT NULL COMMENT 'å¯¹åº”çš„äººå‘˜å§“å',
+  `log_time` datetime DEFAULT NULL COMMENT 'æ—¥å¿—æ—¶é—´',
+  `remark` varchar(40) DEFAULT NULL COMMENT 'å¤‡æ³¨',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -58,26 +58,29 @@ CREATE TABLE `log` (
 DROP TABLE IF EXISTS `score`;
 CREATE TABLE `score` (
   `id` bigint(40) NOT NULL AUTO_INCREMENT COMMENT 'id',
-  `student_id` bigint(40) DEFAULT NULL COMMENT '学生id',
-  `project` tinyint(4) DEFAULT NULL COMMENT '教学科目（对应基础数据表type=1）',
-  `ranking` smallint(5) DEFAULT NULL COMMENT '排名',
-  `unit` varchar(40) DEFAULT NULL COMMENT '单位',
-  `teacher_id` bigint(40) DEFAULT NULL COMMENT '教师id',
-  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
-  `remark` varchar(40) DEFAULT NULL COMMENT '备注',
+  `student_id` bigint(40) DEFAULT NULL COMMENT 'å­¦ç”Ÿid',
+  `project` tinyint(4) DEFAULT NULL COMMENT 'æ•™å­¦ç§‘ç›®ï¼ˆå¯¹åº”åŸºç¡€æ•°æ®è¡¨type=1ï¼‰',
+  `ranking` smallint(5) DEFAULT NULL COMMENT 'æŽ’å',
+  `unit` varchar(40) DEFAULT NULL COMMENT 'å•ä½',
+  `teacher_id` bigint(40) DEFAULT NULL COMMENT 'æ•™å¸ˆid',
+  `update_time` datetime DEFAULT NULL COMMENT 'æ›´æ–°æ—¶é—´',
+  `remark` varchar(40) DEFAULT NULL COMMENT 'å¤‡æ³¨',
   `score` decimal(5,0) DEFAULT NULL,
+  `update_time11` datetime DEFAULT NULL COMMENT 'æ›´æ–°æ—¶é—´',
   `iscomplete11` tinyint(1) DEFAULT NULL,
-  `score111` decimal(5,0) DEFAULT NULL COMMENT '分数',
+  `score111` decimal(5,0) DEFAULT NULL COMMENT 'åˆ†æ•°',
   `answer111` varchar(500) DEFAULT NULL,
+  `update_time12` datetime DEFAULT NULL COMMENT 'æ›´æ–°æ—¶é—´',
   `iscomplete12` tinyint(1) DEFAULT NULL,
-  `score121` decimal(5,0) DEFAULT NULL COMMENT '分数',
+  `score121` decimal(5,0) DEFAULT NULL COMMENT 'åˆ†æ•°',
   `answer121` varchar(500) DEFAULT NULL,
-  `score122` decimal(5,0) DEFAULT NULL COMMENT '分数',
+  `score122` decimal(5,0) DEFAULT NULL COMMENT 'åˆ†æ•°',
   `answer122` varchar(500) DEFAULT NULL,
+  `update_time13` datetime DEFAULT NULL COMMENT 'æ›´æ–°æ—¶é—´',
   `iscomplete13` tinyint(1) DEFAULT NULL,
-  `score131` decimal(5,0) DEFAULT NULL COMMENT '分数',
+  `score131` decimal(5,0) DEFAULT NULL COMMENT 'åˆ†æ•°',
   `answer131` varchar(500) DEFAULT NULL,
-  `score132` decimal(5,0) DEFAULT NULL COMMENT '分数',
+  `score132` decimal(5,0) DEFAULT NULL COMMENT 'åˆ†æ•°',
   `answer132` varchar(500) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=82 DEFAULT CHARSET=utf8;
@@ -86,7 +89,7 @@ CREATE TABLE `score` (
 --  Records of `score`
 -- ----------------------------
 BEGIN;
-INSERT INTO `score` VALUES ('81', '17', null, null, null, null, '2020-04-24 23:16:50', null, null, '1', null, '5.788^583.8^5.88^75.85^8.8^5.6^456.5^453.7^45.5^5.7757^2.964^6.897', '1', '12', '12^6^0^0.866^-0.5^0^0.5^0.866^0^0^0^1', '3', '11.908^13.562^0', '1', '19', '0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0', '16', '0^0^0^0^1^0.71^0^0^0^-0.71^0^0^0^0^0^0^1^0^0^0^1');
+INSERT INTO `score` VALUES ('81', '17', null, null, null, null, '2020-04-27 08:28:36', null, null, null, '1', null, '0^0^0^0^0^0^0^0^0^0^0^0', null, '1', '5', '0^0^0^0^0^0^0^0^0^0^0^0', '1', '0^0^0', null, '1', '19', '0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0', '16', '0^0^0^0^1^0.71^0^0^0^-0.71^0^0^0^0^0^0^1^0^0^0^1');
 COMMIT;
 
 -- ----------------------------
@@ -95,21 +98,21 @@ COMMIT;
 DROP TABLE IF EXISTS `student`;
 CREATE TABLE `student` (
   `id` bigint(40) NOT NULL AUTO_INCREMENT COMMENT 'id',
-  `name` varchar(40) DEFAULT NULL COMMENT '姓名',
-  `password` varchar(40) DEFAULT NULL COMMENT '密码md5加密',
-  `code` varchar(40) DEFAULT NULL COMMENT '学号',
-  `birthday` date DEFAULT NULL COMMENT '出生日期',
-  `sex` tinyint(2) DEFAULT '1' COMMENT '性别（1：男；2：女）',
-  `nation` varchar(40) DEFAULT NULL COMMENT '民族',
-  `college` varchar(40) DEFAULT NULL COMMENT '学院',
-  `major` varchar(40) DEFAULT NULL COMMENT '专业',
-  `nationality` varchar(40) DEFAULT NULL COMMENT '国籍',
-  `entrance_date` date DEFAULT NULL COMMENT '入学日期',
-  `student_type` tinyint(2) DEFAULT '2' COMMENT '学生类型（1：专科；2：本科；3：研究生；4：留学生；5：交换生；6：国防生）',
-  `identity` varchar(18) DEFAULT NULL COMMENT '身份证',
-  `phone` varchar(20) DEFAULT NULL COMMENT '电话',
-  `native_place` varchar(40) DEFAULT NULL COMMENT '籍贯',
-  `status` tinyint(2) DEFAULT '1' COMMENT '状态（1:待审批；2：已注册；3：已锁定）',
+  `name` varchar(40) DEFAULT NULL COMMENT 'å§“å',
+  `password` varchar(40) DEFAULT NULL COMMENT 'å¯†ç md5åŠ å¯†',
+  `code` varchar(40) DEFAULT NULL COMMENT 'å­¦å·',
+  `birthday` date DEFAULT NULL COMMENT 'å‡ºç”Ÿæ—¥æœŸ',
+  `sex` tinyint(2) DEFAULT '1' COMMENT 'æ€§åˆ«ï¼ˆ1ï¼šç”·ï¼›2ï¼šå¥³ï¼‰',
+  `nation` varchar(40) DEFAULT NULL COMMENT 'æ°‘æ—',
+  `college` varchar(40) DEFAULT NULL COMMENT 'å­¦é™¢',
+  `major` varchar(40) DEFAULT NULL COMMENT 'ä¸“ä¸š',
+  `nationality` varchar(40) DEFAULT NULL COMMENT 'å›½ç±',
+  `entrance_date` date DEFAULT NULL COMMENT 'å…¥å­¦æ—¥æœŸ',
+  `student_type` tinyint(2) DEFAULT '2' COMMENT 'å­¦ç”Ÿç±»åž‹ï¼ˆ1ï¼šä¸“ç§‘ï¼›2ï¼šæœ¬ç§‘ï¼›3ï¼šç ”ç©¶ç”Ÿï¼›4ï¼šç•™å­¦ç”Ÿï¼›5ï¼šäº¤æ¢ç”Ÿï¼›6ï¼šå›½é˜²ç”Ÿï¼‰',
+  `identity` varchar(18) DEFAULT NULL COMMENT 'èº«ä»½è¯',
+  `phone` varchar(20) DEFAULT NULL COMMENT 'ç”µè¯',
+  `native_place` varchar(40) DEFAULT NULL COMMENT 'ç±è´¯',
+  `status` tinyint(2) DEFAULT '1' COMMENT 'çŠ¶æ€ï¼ˆ1:å¾…å®¡æ‰¹ï¼›2ï¼šå·²æ³¨å†Œï¼›3ï¼šå·²é”å®šï¼‰',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=69 DEFAULT CHARSET=utf8;
 
@@ -126,19 +129,19 @@ COMMIT;
 DROP TABLE IF EXISTS `teacher`;
 CREATE TABLE `teacher` (
   `id` bigint(40) NOT NULL AUTO_INCREMENT COMMENT 'id',
-  `name` varchar(40) DEFAULT NULL COMMENT '姓名',
-  `password` varchar(40) DEFAULT NULL COMMENT '密码md5加密',
-  `code` varchar(40) DEFAULT NULL COMMENT '教师编号',
-  `birthday` date DEFAULT NULL COMMENT '出生日期',
-  `sex` tinyint(4) DEFAULT '1' COMMENT '性别（1：男；2：女）',
-  `phone` varchar(20) DEFAULT NULL COMMENT '电话',
-  `identity` varchar(18) DEFAULT NULL COMMENT '身份证',
-  `nation` varchar(40) DEFAULT NULL COMMENT '民族',
-  `nationality` varchar(40) DEFAULT NULL COMMENT '国籍',
-  `native_place` varchar(40) DEFAULT NULL COMMENT '籍贯',
-  `major` varchar(40) DEFAULT NULL COMMENT '教师科目',
-  `entrance_date` date DEFAULT NULL COMMENT '来校时间',
-  `remark` varchar(40) DEFAULT NULL COMMENT '备注',
+  `name` varchar(40) DEFAULT NULL COMMENT 'å§“å',
+  `password` varchar(40) DEFAULT NULL COMMENT 'å¯†ç md5åŠ å¯†',
+  `code` varchar(40) DEFAULT NULL COMMENT 'æ•™å¸ˆç¼–å·',
+  `birthday` date DEFAULT NULL COMMENT 'å‡ºç”Ÿæ—¥æœŸ',
+  `sex` tinyint(4) DEFAULT '1' COMMENT 'æ€§åˆ«ï¼ˆ1ï¼šç”·ï¼›2ï¼šå¥³ï¼‰',
+  `phone` varchar(20) DEFAULT NULL COMMENT 'ç”µè¯',
+  `identity` varchar(18) DEFAULT NULL COMMENT 'èº«ä»½è¯',
+  `nation` varchar(40) DEFAULT NULL COMMENT 'æ°‘æ—',
+  `nationality` varchar(40) DEFAULT NULL COMMENT 'å›½ç±',
+  `native_place` varchar(40) DEFAULT NULL COMMENT 'ç±è´¯',
+  `major` varchar(40) DEFAULT NULL COMMENT 'æ•™å¸ˆç§‘ç›®',
+  `entrance_date` date DEFAULT NULL COMMENT 'æ¥æ ¡æ—¶é—´',
+  `remark` varchar(40) DEFAULT NULL COMMENT 'å¤‡æ³¨',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
@@ -155,4 +158,3 @@ use mysql;
 update mysql.user set authentication_string=password('root123') where user='root';
 
 flush privileges;
-

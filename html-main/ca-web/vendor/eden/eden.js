@@ -376,7 +376,7 @@ function createTableUseScore(){
                   if(table){
                     removeTable();
                   }
-                  createTable(response.data.content.score121,response.data.content.updateTime);
+                  createTable(response.data.content);
                 }
               })
               .catch(error=>{
@@ -388,7 +388,7 @@ function createTableUseScore(){
       }
 }
 //创建表格
-function createTable(score,date){
+function createTable(data){
       var table = document.createElement("table");
       table.border = "1";
       table.width = "100%";
@@ -401,21 +401,73 @@ function createTable(score,date){
       //创建单元格
       //var td = tr.insertCell(tr.cells.length);
       var tr,th,td;
+
       tr = table.insertRow(table.rows.length);
       tr.style="font-weight:bold;"
       th = tr.insertCell(tr.cells.length);
-      th.innerHTML = "题目";
+      th.innerHTML = "实验序号";
+      th = tr.insertCell(tr.cells.length);
+      th.innerHTML = "实验名称";
       th = tr.insertCell(tr.cells.length);
       th.innerHTML = "提交日期";
       th = tr.insertCell(tr.cells.length);
       th.innerHTML = "成绩";
+
       tr = table.insertRow(table.rows.length);
       td = tr.insertCell(tr.cells.length);
-      td.innerHTML = "1-2第一题";
+      td.innerHTML = "1-1";
       td = tr.insertCell(tr.cells.length);
-      td.innerHTML = timestampToTime(date);
+      td.innerHTML = "<a href = '../1-1/index.html'>3D数学空间位姿</a>";
       td = tr.insertCell(tr.cells.length);
-      td.innerHTML = score;
+      if(data.iscomplete11){
+        td.innerHTML = timestampToTime(data.updateTime11);
+        td = tr.insertCell(tr.cells.length);
+        var score = 0;
+        if(data.iscomplete11)score = 100;
+        td.innerHTML = score;
+      }
+      else{
+        td.innerHTML ="未提交";
+        td = tr.insertCell(tr.cells.length);
+      }
+
+      tr = table.insertRow(table.rows.length);
+      td = tr.insertCell(tr.cells.length);
+      td.innerHTML = "1-2";
+      td = tr.insertCell(tr.cells.length);
+      td.innerHTML = "<a href = '../1-2/index.html'>坐标变换</a>";
+      td = tr.insertCell(tr.cells.length);
+      if(data.iscomplete12){
+        td.innerHTML = timestampToTime(data.updateTime12);
+        td = tr.insertCell(tr.cells.length);
+        var score = 0;
+        score = (data.score121+data.score122)/15*100;
+        td.innerHTML = score.toFixed(2);
+      }
+      else{
+        td.innerHTML ="未提交";
+        td = tr.insertCell(tr.cells.length);
+      }
+
+      tr = table.insertRow(table.rows.length);
+      td = tr.insertCell(tr.cells.length);
+      td.innerHTML = "1-3";
+      td = tr.insertCell(tr.cells.length);
+      td.innerHTML = "<a href = '../1-3/index.html'>空间变换综合实验</a>";
+      td = tr.insertCell(tr.cells.length);
+      // if(data.score111){
+      if(data.iscomplete13){
+        td.innerHTML = timestampToTime(data.updateTime13);
+        td = tr.insertCell(tr.cells.length);
+        var score = 0;
+        score = (data.score131+data.score132)/57*100;
+        td.innerHTML = score.toFixed(2);
+      }
+      else{
+        td.innerHTML ="未提交";
+        td = tr.insertCell(tr.cells.length);
+      }
+      
       //td.innerHTML = "测试";
       document.querySelector("#tb").appendChild(table);
     }
