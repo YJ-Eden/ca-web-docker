@@ -11,7 +11,7 @@
  Target Server Version : 50719
  File Encoding         : utf-8
 
- Date: 04/27/2020 16:59:26 PM
+ Date: 04/27/2020 23:01:46 PM
 */
 
 create database `etest` default character set utf8 collate utf8_general_ci;
@@ -68,28 +68,28 @@ CREATE TABLE `score` (
   `score` decimal(5,0) DEFAULT NULL,
   `update_time11` datetime DEFAULT NULL COMMENT 'æ›´æ–°æ—¶é—´',
   `iscomplete11` tinyint(1) DEFAULT NULL,
-  `score111` decimal(5,0) DEFAULT NULL COMMENT 'åˆ†æ•°',
+  `score111` varchar(40) DEFAULT NULL COMMENT 'åˆ†æ•°',
   `answer111` varchar(500) DEFAULT NULL,
   `update_time12` datetime DEFAULT NULL COMMENT 'æ›´æ–°æ—¶é—´',
   `iscomplete12` tinyint(1) DEFAULT NULL,
-  `score121` decimal(5,0) DEFAULT NULL COMMENT 'åˆ†æ•°',
+  `score121` varchar(40) DEFAULT NULL COMMENT 'åˆ†æ•°',
   `answer121` varchar(500) DEFAULT NULL,
-  `score122` decimal(5,0) DEFAULT NULL COMMENT 'åˆ†æ•°',
+  `score122` varchar(40) DEFAULT NULL COMMENT 'åˆ†æ•°',
   `answer122` varchar(500) DEFAULT NULL,
   `update_time13` datetime DEFAULT NULL COMMENT 'æ›´æ–°æ—¶é—´',
   `iscomplete13` tinyint(1) DEFAULT NULL,
-  `score131` decimal(5,0) DEFAULT NULL COMMENT 'åˆ†æ•°',
+  `score131` varchar(40) DEFAULT NULL COMMENT 'åˆ†æ•°',
   `answer131` varchar(500) DEFAULT NULL,
-  `score132` decimal(5,0) DEFAULT NULL COMMENT 'åˆ†æ•°',
+  `score132` varchar(40) DEFAULT NULL COMMENT 'åˆ†æ•°',
   `answer132` varchar(500) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=82 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 --  Records of `score`
 -- ----------------------------
 BEGIN;
-INSERT INTO `score` VALUES ('81', '17', null, null, null, null, '2020-04-27 08:28:36', null, null, null, '1', null, '0^0^0^0^0^0^0^0^0^0^0^0', null, '1', '5', '0^0^0^0^0^0^0^0^0^0^0^0', '1', '0^0^0', null, '1', '19', '0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0', '16', '0^0^0^0^1^0.71^0^0^0^-0.71^0^0^0^0^0^0^1^0^0^0^1');
+INSERT INTO `score` VALUES ('1', '17', null, null, null, null, '2020-04-27 23:00:57', null, null, '2020-04-27 22:49:25', '1', '0.0^1.0', '0^0^0^0^0^0^0^0^0^0^0^0', '2020-04-27 22:57:53', '1', '12.0^2.0', '12^6^0^0.866^-0.5^0^0.5^0.866^0^0^0^1', '3.0^2.0', '11.908^13.562^0', '2020-04-27 23:00:57', '1', '36.0^2.0', '1^0^0^3^0^1^0^2^0^0^1^1^0.71^-0.71^0^6^0.71^0.71^0^0^0^0^1^0^0^-1^0^8^1^0^0^3.54^0^0^1^0', '21.0^2.0', '0^0^0^0^0^0.71^0.71^0^0.71^-0.71^0.71^0^4.95^0^0^1^1^0^0^0^1');
 COMMIT;
 
 -- ----------------------------

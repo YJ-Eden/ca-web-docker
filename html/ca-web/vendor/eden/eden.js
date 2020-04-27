@@ -422,6 +422,7 @@ function createTable(data){
       if(data.iscomplete11){
         td.innerHTML = timestampToTime(data.updateTime11);
         td = tr.insertCell(tr.cells.length);
+        var scores = data.score111.split('^');
         var score = 0;
         if(data.iscomplete11)score = 100;
         td.innerHTML = score;
@@ -440,9 +441,12 @@ function createTable(data){
       if(data.iscomplete12){
         td.innerHTML = timestampToTime(data.updateTime12);
         td = tr.insertCell(tr.cells.length);
-        var score = 0;
-        score = (data.score121+data.score122)/15*100;
-        td.innerHTML = score.toFixed(2);
+        var scores1 = data.score121.split('^');
+        var scores2 = data.score122.split('^');
+        var score1 = parseInt(scores1[0]);
+        var score2 = parseInt(scores2[0]);
+        score = (score1+score2)/15*100;
+        td.innerHTML = Math.round(score*100)/100;
       }
       else{
         td.innerHTML ="未提交";
@@ -459,9 +463,12 @@ function createTable(data){
       if(data.iscomplete13){
         td.innerHTML = timestampToTime(data.updateTime13);
         td = tr.insertCell(tr.cells.length);
-        var score = 0;
-        score = (data.score131+data.score132)/57*100;
-        td.innerHTML = score.toFixed(2);
+        var scores1 = data.score131.split('^');
+        var scores2 = data.score132.split('^');
+        var score1 = parseInt(scores1[0]);
+        var score2 = parseInt(scores2[0]);
+        score = (score1+score2)/57*100;
+        td.innerHTML = Math.round(score*100)/100;
       }
       else{
         td.innerHTML ="未提交";
