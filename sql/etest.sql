@@ -11,7 +11,7 @@
  Target Server Version : 50719
  File Encoding         : utf-8
 
- Date: 03/27/2020 18:21:49 PM
+ Date: 04/24/2020 23:25:51 PM
 */
 
 create database `etest` default character set utf8 collate utf8_general_ci;
@@ -65,19 +65,28 @@ CREATE TABLE `score` (
   `teacher_id` bigint(40) DEFAULT NULL COMMENT '教师id',
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `remark` varchar(40) DEFAULT NULL COMMENT '备注',
-  `score121` decimal(5,0) DEFAULT NULL COMMENT '分数',
-  `answer12110` decimal(5,0) DEFAULT NULL,
-  `answer12111` decimal(5,0) DEFAULT NULL,
-  `answer12112` decimal(5,0) DEFAULT NULL,
   `score` decimal(5,0) DEFAULT NULL,
+  `iscomplete11` tinyint(1) DEFAULT NULL,
+  `score111` decimal(5,0) DEFAULT NULL COMMENT '分数',
+  `answer111` varchar(500) DEFAULT NULL,
+  `iscomplete12` tinyint(1) DEFAULT NULL,
+  `score121` decimal(5,0) DEFAULT NULL COMMENT '分数',
+  `answer121` varchar(500) DEFAULT NULL,
+  `score122` decimal(5,0) DEFAULT NULL COMMENT '分数',
+  `answer122` varchar(500) DEFAULT NULL,
+  `iscomplete13` tinyint(1) DEFAULT NULL,
+  `score131` decimal(5,0) DEFAULT NULL COMMENT '分数',
+  `answer131` varchar(500) DEFAULT NULL,
+  `score132` decimal(5,0) DEFAULT NULL COMMENT '分数',
+  `answer132` varchar(500) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=74 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=82 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 --  Records of `score`
 -- ----------------------------
 BEGIN;
-INSERT INTO `score` VALUES ('67', '1', null, null, null, null, '2020-03-19 14:04:49', null, '100', null, null, null, null), ('73', '17', null, null, null, null, '2020-03-27 17:57:53', null, '3', '12', '6', '0', null);
+INSERT INTO `score` VALUES ('81', '17', null, null, null, null, '2020-04-24 23:16:50', null, null, '1', null, '5.788^583.8^5.88^75.85^8.8^5.6^456.5^453.7^45.5^5.7757^2.964^6.897', '1', '12', '12^6^0^0.866^-0.5^0^0.5^0.866^0^0^0^1', '3', '11.908^13.562^0', '1', '19', '0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0', '16', '0^0^0^0^1^0.71^0^0^0^-0.71^0^0^0^0^0^0^1^0^0^0^1');
 COMMIT;
 
 -- ----------------------------
@@ -102,13 +111,13 @@ CREATE TABLE `student` (
   `native_place` varchar(40) DEFAULT NULL COMMENT '籍贯',
   `status` tinyint(2) DEFAULT '1' COMMENT '状态（1:待审批；2：已注册；3：已锁定）',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=69 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 --  Records of `student`
 -- ----------------------------
 BEGIN;
-INSERT INTO `student` VALUES ('1', 'student', '14e1b600b1fd579f47433b88e8d85291', null, null, '1', null, null, null, null, null, '2', null, null, null, '2'), ('17', 'eden', '14e1b600b1fd579f47433b88e8d85291', null, null, '1', null, null, null, null, null, '2', null, null, null, '2');
+INSERT INTO `student` VALUES ('1', 'student', '14e1b600b1fd579f47433b88e8d85291', null, null, '1', null, null, null, null, null, '2', null, null, null, '2'), ('17', 'eden', '14e1b600b1fd579f47433b88e8d85291', null, null, '1', null, null, null, null, null, '2', null, null, null, '2'), ('19', '1120170150', '14e1b600b1fd579f47433b88e8d85291', null, null, '1', null, null, null, null, null, '2', null, null, null, '2'), ('20', '1120170154', '14e1b600b1fd579f47433b88e8d85291', null, null, '1', null, null, null, null, null, '2', null, null, null, '2'), ('21', '1120170157', '14e1b600b1fd579f47433b88e8d85291', null, null, '1', null, null, null, null, null, '2', null, null, null, '2'), ('22', '1120170297', '14e1b600b1fd579f47433b88e8d85291', null, null, '1', null, null, null, null, null, '2', null, null, null, '2'), ('23', '1120170462', '14e1b600b1fd579f47433b88e8d85291', null, null, '1', null, null, null, null, null, '2', null, null, null, '2'), ('24', '1120170644', '14e1b600b1fd579f47433b88e8d85291', null, null, '1', null, null, null, null, null, '2', null, null, null, '2'), ('25', '1120170647', '14e1b600b1fd579f47433b88e8d85291', null, null, '1', null, null, null, null, null, '2', null, null, null, '2'), ('26', '1120170659', '14e1b600b1fd579f47433b88e8d85291', null, null, '1', null, null, null, null, null, '2', null, null, null, '2'), ('27', '1120170699', '14e1b600b1fd579f47433b88e8d85291', null, null, '1', null, null, null, null, null, '2', null, null, null, '2'), ('28', '1120171138', '14e1b600b1fd579f47433b88e8d85291', null, null, '1', null, null, null, null, null, '2', null, null, null, '2'), ('29', '1120171396', '14e1b600b1fd579f47433b88e8d85291', null, null, '1', null, null, null, null, null, '2', null, null, null, '2'), ('30', '1120171489', '14e1b600b1fd579f47433b88e8d85291', null, null, '1', null, null, null, null, null, '2', null, null, null, '2'), ('31', '1120172102', '14e1b600b1fd579f47433b88e8d85291', null, null, '1', null, null, null, null, null, '2', null, null, null, '2'), ('32', '1120172111', '14e1b600b1fd579f47433b88e8d85291', null, null, '1', null, null, null, null, null, '2', null, null, null, '2'), ('33', '1120172123', '14e1b600b1fd579f47433b88e8d85291', null, null, '1', null, null, null, null, null, '2', null, null, null, '2'), ('34', '1120172126', '14e1b600b1fd579f47433b88e8d85291', null, null, '1', null, null, null, null, null, '2', null, null, null, '2'), ('35', '1120172130', '14e1b600b1fd579f47433b88e8d85291', null, null, '1', null, null, null, null, null, '2', null, null, null, '2'), ('36', '1120172133', '14e1b600b1fd579f47433b88e8d85291', null, null, '1', null, null, null, null, null, '2', null, null, null, '2'), ('37', '1120172138', '14e1b600b1fd579f47433b88e8d85291', null, null, '1', null, null, null, null, null, '2', null, null, null, '2'), ('38', '1120172142', '14e1b600b1fd579f47433b88e8d85291', null, null, '1', null, null, null, null, null, '2', null, null, null, '2'), ('39', '1120172144', '14e1b600b1fd579f47433b88e8d85291', null, null, '1', null, null, null, null, null, '2', null, null, null, '2'), ('40', '1120172146', '14e1b600b1fd579f47433b88e8d85291', null, null, '1', null, null, null, null, null, '2', null, null, null, '2'), ('41', '1120172166', '14e1b600b1fd579f47433b88e8d85291', null, null, '1', null, null, null, null, null, '2', null, null, null, '2'), ('42', '1120172195', '14e1b600b1fd579f47433b88e8d85291', null, null, '1', null, null, null, null, null, '2', null, null, null, '2'), ('43', '1120172745', '14e1b600b1fd579f47433b88e8d85291', null, null, '1', null, null, null, null, null, '2', null, null, null, '2'), ('44', '1120172759', '14e1b600b1fd579f47433b88e8d85291', null, null, '1', null, null, null, null, null, '2', null, null, null, '2'), ('45', '1120172761', '14e1b600b1fd579f47433b88e8d85291', null, null, '1', null, null, null, null, null, '2', null, null, null, '2'), ('46', '1120172763', '14e1b600b1fd579f47433b88e8d85291', null, null, '1', null, null, null, null, null, '2', null, null, null, '2'), ('47', '1120172825', '14e1b600b1fd579f47433b88e8d85291', null, null, '1', null, null, null, null, null, '2', null, null, null, '2'), ('48', '1120172977', '14e1b600b1fd579f47433b88e8d85291', null, null, '1', null, null, null, null, null, '2', null, null, null, '2'), ('49', '1120172979', '14e1b600b1fd579f47433b88e8d85291', null, null, '1', null, null, null, null, null, '2', null, null, null, '2'), ('50', '1120172981', '14e1b600b1fd579f47433b88e8d85291', null, null, '1', null, null, null, null, null, '2', null, null, null, '2'), ('51', '1120172984', '14e1b600b1fd579f47433b88e8d85291', null, null, '1', null, null, null, null, null, '2', null, null, null, '2'), ('52', '1120172985', '14e1b600b1fd579f47433b88e8d85291', null, null, '1', null, null, null, null, null, '2', null, null, null, '2'), ('53', '1120172991', '14e1b600b1fd579f47433b88e8d85291', null, null, '1', null, null, null, null, null, '2', null, null, null, '2'), ('54', '1120172992', '14e1b600b1fd579f47433b88e8d85291', null, null, '1', null, null, null, null, null, '2', null, null, null, '2'), ('55', '1120172994', '14e1b600b1fd579f47433b88e8d85291', null, null, '1', null, null, null, null, null, '2', null, null, null, '2'), ('56', '1120173010', '14e1b600b1fd579f47433b88e8d85291', null, null, '1', null, null, null, null, null, '2', null, null, null, '2'), ('57', '1120173298', '14e1b600b1fd579f47433b88e8d85291', null, null, '1', null, null, null, null, null, '2', null, null, null, '2'), ('58', '1120173299', '14e1b600b1fd579f47433b88e8d85291', null, null, '1', null, null, null, null, null, '2', null, null, null, '2'), ('59', '1120173303', '14e1b600b1fd579f47433b88e8d85291', null, null, '1', null, null, null, null, null, '2', null, null, null, '2'), ('60', '1120173312', '14e1b600b1fd579f47433b88e8d85291', null, null, '1', null, null, null, null, null, '2', null, null, null, '2'), ('61', '1120173317', '14e1b600b1fd579f47433b88e8d85291', null, null, '1', null, null, null, null, null, '2', null, null, null, '2'), ('62', '1120173327', '14e1b600b1fd579f47433b88e8d85291', null, null, '1', null, null, null, null, null, '2', null, null, null, '2'), ('63', '1120173335', '14e1b600b1fd579f47433b88e8d85291', null, null, '1', null, null, null, null, null, '2', null, null, null, '2'), ('64', '1120173447', '14e1b600b1fd579f47433b88e8d85291', null, null, '1', null, null, null, null, null, '2', null, null, null, '2'), ('65', '1120173469', '14e1b600b1fd579f47433b88e8d85291', null, null, '1', null, null, null, null, null, '2', null, null, null, '2'), ('66', '1120173597', '14e1b600b1fd579f47433b88e8d85291', null, null, '1', null, null, null, null, null, '2', null, null, null, '2'), ('67', '1820171040', '14e1b600b1fd579f47433b88e8d85291', null, null, '1', null, null, null, null, null, '2', null, null, null, '2'), ('68', '1120162059', '14e1b600b1fd579f47433b88e8d85291', null, null, '1', null, null, null, null, null, '2', null, null, null, '2');
 COMMIT;
 
 -- ----------------------------
@@ -146,3 +155,4 @@ use mysql;
 update mysql.user set authentication_string=password('root123') where user='root';
 
 flush privileges;
+

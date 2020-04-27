@@ -11,15 +11,42 @@ document.head.appendChild(axiosScript);
 var globalURL='http://117.51.146.35:8088/user';
 
 /*网页函数*/
-//1-2
-function JsSubmit1_2_1Sql(j){
+//1-1-完成iscomplete
+function JsSubmit1_1_1Sql(j){ 
   var storage=window.sessionStorage;
   eval("var tmp="+j); 
   let submitParams = new URLSearchParams();
-  var name="answer1211";
-  for(var i=0;i<3;i++){
-    submitParams.append(name+i.toString(),tmp.arrPos[i]);
+  submitParams.append("answerarray1111",tmp.arrPos);
+  submitParams.append("answerarray1112",tmp.arrRot);
+  /*
+  name="answer1212";
+  for(var i=0;i<9;i++){
+    submitParams.append(name+i.toString(),tmp.arrRot[i]);
   }
+  */
+  if(storage){
+    axios.post(globalURL+'/score/submit1-1-1',submitParams,{
+      headers:{token:storage.getItem("token")}
+    })
+    .then(response=>{
+      if(response.data.code==0){
+      }
+      else{
+        alert(response.data.message);
+      }
+    })
+    .catch(error=>{
+      console.log(error);
+    })
+  }
+}
+//1-2-完成iscomplete
+function JsSubmit1_2_1Sql(j){ 
+  var storage=window.sessionStorage;
+  eval("var tmp="+j); 
+  let submitParams = new URLSearchParams();
+  submitParams.append("answerarray1211",tmp.arrPos);
+  submitParams.append("answerarray1212",tmp.arrRot);
   /*
   name="answer1212";
   for(var i=0;i<9;i++){
@@ -46,10 +73,7 @@ function JsSubmit1_2_2Sql(j){
   var storage=window.sessionStorage;
   eval("var tmp="+j); 
   let submitParams = new URLSearchParams();
-  var name="answer1221";
-  for(var i=0;i<3;i++){
-    submitParams.append(name+i.toString(),tmp.arrPos[i]);
-  }
+  submitParams.append("answerarray1221",tmp.arrPos);
   if(storage){
     axios.post(globalURL+'/score/submit1-2-2',submitParams,{
       headers:{token:storage.getItem("token")}
@@ -97,21 +121,35 @@ function JsSubmit2_1_3Sql(j){
   //提交并记录完成
   console.log(j);
 }
-function JsSubmit2_1_4Sql(j){
-  console.log(j);
-}
 function JsSubmit2_2_1(){
   console.log("跳转链接");
 }
 function JsSubmit2_2_2(){
   //提交文件，回传名字，调unity中onLoadBVH(string url=path~name)
   console.log("上传bvh文件");
-  var url = "http://117.51.146.35:8080/resources/Gesture/gesture_etc-10-snip_nail.bvh~gesture_etc-10-snip_nail";
+  var url = "http://117.51.146.35:8080/resources/bvh/gesture_etc-10-snip_nail.bvh~gesture_etc-10-snip_nail";
   var name = "gesture_etc-10-snip_nail";
   gameInstance.SendMessage("GUI","onLoadBVH",url+'~'+name);
 }
 function JsSubmit2_2_3Sql(j){
   //提交旋转值并记录完成
+  console.log(j);
+}
+//TODO
+/*answer2_3_1:
+{"joints":[1,1,4,3,7,11,3,7,11,2,2,2,4,0,0,4,0,0,3,3,2,5,0,0,5,0,0,4,4,2,6,0,0,6,0,0,5,5,1,0,0,0,0,0,0,2,2,2,8,0,0,8,0,0,7,7,2,9,0,0,9,0,0,8,8,2,10,0,0,10,0,0,9,9,1,0,0,0,0,0,0,2,2,1,0,0,0,0,0,0]}
+*/
+function JsSubmit2_3_1Sql(j){
+  //提交90个dropdown值
+  console.log(j);
+}
+//TODO
+/*answer2_5_1
+{"arr":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,11.0,12.0],
+"arrTF":[2.0,1.0,2.0,1.0,2.0,1.0]}
+*/
+function JsSubmit2_5_1Sql(j){
+  //提交90个dropdown值
   console.log(j);
 }
 
@@ -288,5 +326,34 @@ function timestampToTime(timestamp) {
      s = date.getSeconds();
      return Y+M+D;
 }
+//修改密码
+function ChangePassword(){
+  var password = document.forms["sentMessage"]["password"].value;
+  let Params = new URLSearchParams();
+  Params.append('password',md5(password));
+  var storage=window.sessionStorage;
+  var type = storage.userType;
+  //console.log(type);
+  axios.post(globalURL+'/'+type+'/'+type+'ChangePassword',Params,{
+      headers:{token:storage.getItem("token")}
+    })
+  .then(response=>{
+    if(response.data.code==0){
+      alert("修改成功，请重新登录！");
+      storage.setItem('userType','');
+      storage.setItem('token','');
+      storage.setItem('name','');
+      storage.setItem('userId','');
+      window.location.href='webpages/LogIn/index.html';
+    }
+    else{
+      alert(response.data.message);
+    }
+  })
+  .catch(error=>{
+    console.log(error)
+  })
+}
+
 
 

@@ -14,6 +14,11 @@ services:
     network_mode: "bridge"
     volumes:
       - $PWD/sql:/docker-entrypoint-initdb.d
+      - $PWD/sql_data:/var/lib/mysql
+    command: [
+      '--character-set-server=utf8mb4',
+      '--collation-server=utf8mb4_unicode_ci'
+    ]
     environment:
       MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
   nginx:
