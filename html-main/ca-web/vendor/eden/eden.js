@@ -228,8 +228,6 @@ function JsSubmit2_1_1Sql(j){
   console.log(j);
 }
 
-
-
 function JsSubmit2_1_2Sql(j){
   console.log(j);
 }
@@ -239,7 +237,8 @@ function JsSubmit2_1_3Sql(j){
 }
 function JsSubmit2_2_1(){
   console.log("跳转链接");
-
+  var button = document.getElementById("openModal");
+  button.click();
 }
 function JsSubmit2_2_2(){
   //提交文件，回传名字，调unity中onLoadBVH(string url=path~name)

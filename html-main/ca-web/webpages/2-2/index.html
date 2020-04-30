@@ -68,9 +68,48 @@
     </ol>
 
     <!--提交bvh文件的按钮，隐藏，用js唤醒-->
-    <form method="post" onsubmit="bvhFileLoad();" enctype="multipart/form-data" id="bvhForm" name="bvhForm">
-      <input type="file" id="bvhFile" name="bvhFile" accept=".bvh" style="display: none">
-    </form>
+    <input type="file" id="bvhFile" name="bvhFile" accept=".bvh" style="display: none" >
+
+    <!--显示modal的按钮，隐藏，用js唤醒-->
+    <button type = "button" id="openModal" name="openModal" data-toggle="modal" data-target="#myModal" style="display: none"></button>
+
+    <!-- 模态框（Modal） -->
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="myModalLabel">
+            下载bvh文件
+          </h4>
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+            &times;
+          </button>
+          
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-lg-10 mb-4">
+              <p>下载压缩包，解压后使用其中的bvh文件～</p>
+              <ul>
+                <li><a href="../../resources/2-2download/Accident+Motion.zip" download>Accident+Motion.zip</a></li>
+                <li><a href="../../resources/2-2download/Audience.zip" download>Audience.zip</a></li>
+                <li><a href="../../resources/2-2download/Fighting.zip" download>Fighting.zip</a></li>
+                <li><a href="../../resources/2-2download/Gesture.zip" download>Gesture.zip</a></li>
+                <li><a href="../../resources/2-2download/Joke.zip" download>Joke.zip</a></li>
+                <li><a href="../../resources/2-2download/Jump.zip" download>Jump.zip</a></li>
+              </ul>
+            </div>
+            <div class="col-lg-6">
+              <a href="webpages/2/index.html"><img class="img-fluid rounded" src="resources/实验头图/2-1.jpg" alt=""></a>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+  </div>
 
     <h4><li>实验</li></h4>
     <br/>
