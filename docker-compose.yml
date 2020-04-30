@@ -41,6 +41,8 @@ services:
       - redis
     volumes:
       - $PWD/user_jar:/jar
+      - $PWD/html-main/ca-web/resources/bvh:/root/8079
+      - $PWD/html/ca-web/resources/bvh:/root/8080
     command: /usr/bin/java -jar /jar/user.jar
     depends_on:
       - mysql

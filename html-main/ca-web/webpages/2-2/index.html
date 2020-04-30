@@ -67,6 +67,11 @@
       <li class="breadcrumb-item active">动作捕捉数据的获取与认知实验</li>
     </ol>
 
+    <!--提交bvh文件的按钮，隐藏，用js唤醒-->
+    <form method="post" onsubmit="bvhFileLoad();" enctype="multipart/form-data" id="bvhForm" name="bvhForm">
+      <input type="file" id="bvhFile" name="bvhFile" accept=".bvh" style="display: none">
+    </form>
+
     <h4><li>实验</li></h4>
     <br/>
 
@@ -95,6 +100,16 @@
   <!-- Bootstrap core JavaScript -->
   <script src="../../vendor/jquery/jquery.min.js"></script>
   <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script type="text/javascript">
+  $(function(){
+    var $input = $("#bvhFile");
+    $input.change(function(){
+      if($(this).val() !=""){
+        bvhFileLoad(this);
+      }
+    })
+  })
+  </script>
 
 </body>
 

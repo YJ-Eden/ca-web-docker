@@ -9,6 +9,7 @@ document.head.appendChild(axiosScript);
 //切换使用环境时切换axios请求的url
 //var globalURL='http://127.0.0.1:8088/user';
 var globalURL='http://117.51.146.35:8088/user';
+//var globalURL='http://117.51.146.35:8087/user';
 
 /*网页函数*/
 //1_1_1完成iscomplete
@@ -223,8 +224,12 @@ function JsSubmit1_3_2Sql(j){
   }
 }
 function JsSubmit2_1_1Sql(j){
+
   console.log(j);
 }
+
+
+
 function JsSubmit2_1_2Sql(j){
   console.log(j);
 }
@@ -234,14 +239,44 @@ function JsSubmit2_1_3Sql(j){
 }
 function JsSubmit2_2_1(){
   console.log("跳转链接");
+
 }
 function JsSubmit2_2_2(){
   //提交文件，回传名字，调unity中onLoadBVH(string url=path~name)
+  var fileInput = document.getElementById("bvhFile");
+  fileInput.click();
   console.log("上传bvh文件");
-  var url = "http://117.51.146.35:8079/resources/bvh/gesture_etc-10-snip_nail.bvh~gesture_etc-10-snip_nail";
-  var name = "gesture_etc-10-snip_nail";
-  gameInstance.SendMessage("GUI","onLoadBVH",url+'~'+name);
+  
 }
+
+function bvhFileLoad(ele){
+  var storage=window.sessionStorage;
+  var form = new FormData();
+  var file = $(ele)[0].files[0];
+  form.append("file",file);
+  if(storage){
+    axios.post(globalURL+'/score/bvhFileUpLoad',form,{
+      headers:{
+        token:storage.getItem("token")
+      }
+    })
+    .then(response=>{
+      if(response.data.code==0){
+        var url = "http://117.51.146.35:8079/resources/bvh/"+storage.getItem("name")+".bvh";
+        var name = storage.getItem("name");
+        gameInstance.SendMessage("GUI","onLoadBVH",url+'~'+name);
+        alert("上传成功");
+      }
+      else{
+        alert(response.data.message);
+      }
+    })
+    .catch(error=>{
+      console.log(error);
+    })
+  }
+}
+
 function JsSubmit2_2_3Sql(j){
   //提交旋转值并记录完成
   console.log(j);
