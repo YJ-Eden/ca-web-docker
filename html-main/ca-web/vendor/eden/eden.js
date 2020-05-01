@@ -223,31 +223,123 @@ function JsSubmit1_3_2Sql(j){
     })
   }
 }
+//已完成
 function JsSubmit2_1_1Sql(j){
+  var storage=window.sessionStorage;
+  eval("var tmp="+j); 
+  let submitParams = new URLSearchParams();
+  var answer="";
+  var array = tmp.arrDropdown;
+  for(var i = 0;i<1;i++){
+    answer+=(array[i].toString()+"^");
+  }
+  answer+=array[1].toString();
 
-  console.log(j);
+  submitParams.append("answer211",answer);
+
+  if(storage){
+    axios.post(globalURL+'/score/submit2-1-1',submitParams,{
+      headers:{token:storage.getItem("token")}
+    })
+    .then(response=>{
+      if(response.data.code==0){
+      }
+      else{
+        alert(response.data.message);
+      }
+    })
+    .catch(error=>{
+      console.log(error);
+    })
+  }
 }
-
+//已完成
 function JsSubmit2_1_2Sql(j){
-  console.log(j);
+  var storage=window.sessionStorage;
+  eval("var tmp="+j); 
+  let submitParams = new URLSearchParams();
+  var answer="";
+  var array = tmp.arrDropdown;
+  for(var i = 0;i<2;i++){
+    answer+=(array[i].toString()+"^");
+  }
+
+  array = tmp.arrToggle1;
+  for(var i = 0;i<4;i++){
+    answer+=(array[i].toString()+"^");
+  }
+
+  array = tmp.arrToggle2;
+  for(var i = 0;i<3;i++){
+    answer+=(array[i].toString()+"^");
+  }
+  answer+=array[3].toString();
+
+  submitParams.append("answer212",answer);
+
+  if(storage){
+    axios.post(globalURL+'/score/submit2-1-2',submitParams,{
+      headers:{token:storage.getItem("token")}
+    })
+    .then(response=>{
+      if(response.data.code==0){
+      }
+      else{
+        alert(response.data.message);
+      }
+    })
+    .catch(error=>{
+      console.log(error);
+    })
+  }
 }
+//已完成iscomplete
 function JsSubmit2_1_3Sql(j){
-  //提交并记录完成
-  console.log(j);
+  var storage=window.sessionStorage;
+  eval("var tmp="+j); 
+  let submitParams = new URLSearchParams();
+  var answer="";
+  //TODO
+  var array = tmp.arrDropdown;
+  for(var i = 0;i<5;i++){
+    answer+=(array[i].toString()+"^");
+  }
+  answer+=array[5].toString();
+  //TODO
+  submitParams.append("answer213",answer);
+
+  if(storage){
+    //TODO
+    axios.post(globalURL+'/score/submit2-1-3',submitParams,{
+      headers:{token:storage.getItem("token")}
+    })
+    .then(response=>{
+      if(response.data.code==0){
+      }
+      else{
+        alert(response.data.message);
+      }
+    })
+    .catch(error=>{
+      console.log(error);
+    })
+  }
 }
+
+//已完成下载bvh文件modal
 function JsSubmit2_2_1(){
-  console.log("跳转链接");
   var button = document.getElementById("openModal");
   button.click();
 }
+
+//已完成上传bvh文件
 function JsSubmit2_2_2(){
   //提交文件，回传名字，调unity中onLoadBVH(string url=path~name)
   var fileInput = document.getElementById("bvhFile");
   fileInput.click();
-  console.log("上传bvh文件");
-  
+  console.log("上传bvh文件"); 
 }
-
+//已完成2—2—2传输bvh文件并调用webgl接口创建模型
 function bvhFileLoad(ele){
   var storage=window.sessionStorage;
   var form = new FormData();
