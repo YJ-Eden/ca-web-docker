@@ -367,10 +367,37 @@ function bvhFileLoad(ele){
     })
   }
 }
-
+//已完成iscomplete
 function JsSubmit2_2_3Sql(j){
-  //提交旋转值并记录完成
-  console.log(j);
+  var storage=window.sessionStorage;
+  eval("var tmp="+j); 
+  let submitParams = new URLSearchParams();
+  var answer="";
+  //TODO
+  var array = tmp.BoneRotates;
+  for(var i = 0;i<56;i++){
+    answer+=(array[i].toString()+"^");
+  }
+  answer+=array[56].toString();
+  //TODO
+  submitParams.append("answer223",answer);
+
+  if(storage){
+    //TODO
+    axios.post(globalURL+'/score/submit2-2-3',submitParams,{
+      headers:{token:storage.getItem("token")}
+    })
+    .then(response=>{
+      if(response.data.code==0){
+      }
+      else{
+        alert(response.data.message);
+      }
+    })
+    .catch(error=>{
+      console.log(error);
+    })
+  }
 }
 //TODO
 function JsSubmit2_3_1Sql(j){
@@ -548,10 +575,7 @@ function createTable(data){
       if(data.iscomplete11){
         td.innerHTML = timestampToTime(data.updateTime11);
         td = tr.insertCell(tr.cells.length);
-        var scores = data.score111.split('^');
-        var score = 0;
-        if(data.iscomplete11)score = 100;
-        td.innerHTML = score;
+        td.innerHTML = 100;
       }
       else{
         td.innerHTML ="未提交";
@@ -595,6 +619,46 @@ function createTable(data){
         var score2 = parseInt(scores2[0]);
         score = (score1+score2)/57*100;
         td.innerHTML = Math.round(score*100)/100;
+      }
+      else{
+        td.innerHTML ="未提交";
+        td = tr.insertCell(tr.cells.length);
+      }
+
+      tr = table.insertRow(table.rows.length);
+      td = tr.insertCell(tr.cells.length);
+      td.innerHTML = "2-1";
+      td = tr.insertCell(tr.cells.length);
+      td.innerHTML = "<a href = '../2-1/index.html'>虚拟人运动学求解基础</a>";
+      td = tr.insertCell(tr.cells.length);
+      // if(data.score111){
+      if(data.iscomplete21){
+        td.innerHTML = timestampToTime(data.updateTime21);
+        td = tr.insertCell(tr.cells.length);
+        var scores1 = data.score211.split('^');
+        var scores2 = data.score212.split('^');
+        var scores3 = data.score213.split('^');
+        var score1 = parseInt(scores1[0]);
+        var score2 = parseInt(scores2[0]);
+        var score3 = parseInt(scores3[0]);
+        score = (score1+score2+score3)/18*100;
+        td.innerHTML = Math.round(score*100)/100;
+      }
+      else{
+        td.innerHTML ="未提交";
+        td = tr.insertCell(tr.cells.length);
+      }
+
+      tr = table.insertRow(table.rows.length);
+      td = tr.insertCell(tr.cells.length);
+      td.innerHTML = "2-2";
+      td = tr.insertCell(tr.cells.length);
+      td.innerHTML = "<a href = '../2-2/index.html'>动作捕捉数据的获取与认知实验</a>";
+      td = tr.insertCell(tr.cells.length);
+      if(data.iscomplete22){
+        td.innerHTML = timestampToTime(data.updateTime22);
+        td = tr.insertCell(tr.cells.length);
+        td.innerHTML = 100;
       }
       else{
         td.innerHTML ="未提交";
