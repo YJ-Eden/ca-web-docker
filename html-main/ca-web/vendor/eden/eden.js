@@ -11,6 +11,9 @@ document.head.appendChild(axiosScript);
 var globalURL='http://117.51.146.35:8088/user';
 //var globalURL='http://117.51.146.35:8087/user';
 
+//切换8079、8080时视频地址
+var videoURL = "http://117.51.146.35:8079"
+
 /*网页函数*/
 //1_1_1完成iscomplete
 function JsSubmit1_1_1Sql(j){ 
@@ -326,6 +329,13 @@ function JsSubmit2_1_3Sql(j){
   }
 }
 
+//set视频地址
+function JsSubmit2_2_0(){
+  var url1 = videoURL+"/resources/2-2-2.mp4";
+  var url2 = videoURL+"/resources/2-2-3.mp4";
+  gameInstance.SendMessage("GUI","setURLs",url1+'~'+url2);
+}
+
 //已完成下载bvh文件modal
 function JsSubmit2_2_1(){
   var button = document.getElementById("openModal");
@@ -402,6 +412,16 @@ function JsSubmit2_2_3Sql(j){
 //TODO
 function JsSubmit2_3_1Sql(j){
   //提交90个dropdown值
+  console.log(j);
+}
+//TODO
+function JsSubmit2_3_2Sql(j){
+  //提交18个角标值
+  console.log(j);
+}
+//TODO
+function JsSubmit2_3_3Sql(j){
+  //提交72个角标值，设置iscomplete
   console.log(j);
 }
 //TODO
@@ -629,30 +649,6 @@ function createTable(data){
       td = tr.insertCell(tr.cells.length);
       td.innerHTML = "2-1";
       td = tr.insertCell(tr.cells.length);
-      td.innerHTML = "<a href = '../2-1/index.html'>虚拟人运动学求解基础</a>";
-      td = tr.insertCell(tr.cells.length);
-      // if(data.score111){
-      if(data.iscomplete21){
-        td.innerHTML = timestampToTime(data.updateTime21);
-        td = tr.insertCell(tr.cells.length);
-        var scores1 = data.score211.split('^');
-        var scores2 = data.score212.split('^');
-        var scores3 = data.score213.split('^');
-        var score1 = parseInt(scores1[0]);
-        var score2 = parseInt(scores2[0]);
-        var score3 = parseInt(scores3[0]);
-        score = (score1+score2+score3)/18*100;
-        td.innerHTML = Math.round(score*100)/100;
-      }
-      else{
-        td.innerHTML ="未提交";
-        td = tr.insertCell(tr.cells.length);
-      }
-
-      tr = table.insertRow(table.rows.length);
-      td = tr.insertCell(tr.cells.length);
-      td.innerHTML = "2-2";
-      td = tr.insertCell(tr.cells.length);
       td.innerHTML = "<a href = '../2-2/index.html'>动作捕捉数据的获取与认知实验</a>";
       td = tr.insertCell(tr.cells.length);
       if(data.iscomplete22){
@@ -664,7 +660,31 @@ function createTable(data){
         td.innerHTML ="未提交";
         td = tr.insertCell(tr.cells.length);
       }
-      
+
+      // tr = table.insertRow(table.rows.length);
+      // td = tr.insertCell(tr.cells.length);
+      // td.innerHTML = "2-2";
+      // td = tr.insertCell(tr.cells.length);
+      // td.innerHTML = "<a href = '../2-2/index.html'>虚拟人运动学求解基础</a>";
+      // td = tr.insertCell(tr.cells.length);
+      // // if(data.score111){
+      // if(data.iscomplete21){
+      //   td.innerHTML = timestampToTime(data.updateTime21);
+      //   td = tr.insertCell(tr.cells.length);
+      //   var scores1 = data.score211.split('^');
+      //   var scores2 = data.score212.split('^');
+      //   var scores3 = data.score213.split('^');
+      //   var score1 = parseInt(scores1[0]);
+      //   var score2 = parseInt(scores2[0]);
+      //   var score3 = parseInt(scores3[0]);
+      //   score = (score1+score2+score3)/18*100;
+      //   td.innerHTML = Math.round(score*100)/100;
+      // }
+      // else{
+      //   td.innerHTML ="未提交";
+      //   td = tr.insertCell(tr.cells.length);
+      // }
+
       //td.innerHTML = "测试";
       document.querySelector("#tb").appendChild(table);
     }
