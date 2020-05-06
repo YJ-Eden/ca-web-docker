@@ -12,7 +12,8 @@ var globalURL='http://117.51.146.35:8088/user';
 //var globalURL='http://117.51.146.35:8087/user';
 
 //切换8079、8080时视频地址
-var videoURL = "http://117.51.146.35:8079"
+var videoURL = "http://117.51.146.35:8079";
+//var videoURL = "http://117.51.146.35:8080";
 
 /*网页函数*/
 //1_1_1完成iscomplete
@@ -363,7 +364,7 @@ function bvhFileLoad(ele){
     })
     .then(response=>{
       if(response.data.code==0){
-        var url = "http://117.51.146.35:8079/resources/bvh/"+storage.getItem("name")+".bvh";
+        var url = videoURL+"/resources/bvh/"+storage.getItem("name")+".bvh";
         var name = storage.getItem("name");
         gameInstance.SendMessage("GUI","onLoadBVH",url+'~'+name);
         alert("上传成功");

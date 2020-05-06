@@ -9,6 +9,11 @@ document.head.appendChild(axiosScript);
 //切换使用环境时切换axios请求的url
 //var globalURL='http://127.0.0.1:8088/user';
 var globalURL='http://117.51.146.35:8088/user';
+//var globalURL='http://117.51.146.35:8087/user';
+
+//切换8079、8080时视频地址
+//var videoURL = "http://117.51.146.35:8079";
+var videoURL = "http://117.51.146.35:8080";
 
 /*网页函数*/
 //1_1_1完成iscomplete
@@ -222,33 +227,202 @@ function JsSubmit1_3_2Sql(j){
     })
   }
 }
+//已完成
 function JsSubmit2_1_1Sql(j){
-  console.log(j);
+  var storage=window.sessionStorage;
+  eval("var tmp="+j); 
+  let submitParams = new URLSearchParams();
+  var answer="";
+  var array = tmp.arrDropdown;
+  for(var i = 0;i<1;i++){
+    answer+=(array[i].toString()+"^");
+  }
+  answer+=array[1].toString();
+
+  submitParams.append("answer211",answer);
+
+  if(storage){
+    axios.post(globalURL+'/score/submit2-1-1',submitParams,{
+      headers:{token:storage.getItem("token")}
+    })
+    .then(response=>{
+      if(response.data.code==0){
+      }
+      else{
+        alert(response.data.message);
+      }
+    })
+    .catch(error=>{
+      console.log(error);
+    })
+  }
 }
+//已完成
 function JsSubmit2_1_2Sql(j){
-  console.log(j);
+  var storage=window.sessionStorage;
+  eval("var tmp="+j); 
+  let submitParams = new URLSearchParams();
+  var answer="";
+  var array = tmp.arrDropdown;
+  for(var i = 0;i<2;i++){
+    answer+=(array[i].toString()+"^");
+  }
+
+  array = tmp.arrToggle1;
+  for(var i = 0;i<4;i++){
+    answer+=(array[i].toString()+"^");
+  }
+
+  array = tmp.arrToggle2;
+  for(var i = 0;i<3;i++){
+    answer+=(array[i].toString()+"^");
+  }
+  answer+=array[3].toString();
+
+  submitParams.append("answer212",answer);
+
+  if(storage){
+    axios.post(globalURL+'/score/submit2-1-2',submitParams,{
+      headers:{token:storage.getItem("token")}
+    })
+    .then(response=>{
+      if(response.data.code==0){
+      }
+      else{
+        alert(response.data.message);
+      }
+    })
+    .catch(error=>{
+      console.log(error);
+    })
+  }
 }
+//已完成iscomplete
 function JsSubmit2_1_3Sql(j){
-  //提交并记录完成
-  console.log(j);
+  var storage=window.sessionStorage;
+  eval("var tmp="+j); 
+  let submitParams = new URLSearchParams();
+  var answer="";
+  //TODO
+  var array = tmp.arrDropdown;
+  for(var i = 0;i<5;i++){
+    answer+=(array[i].toString()+"^");
+  }
+  answer+=array[5].toString();
+  //TODO
+  submitParams.append("answer213",answer);
+
+  if(storage){
+    //TODO
+    axios.post(globalURL+'/score/submit2-1-3',submitParams,{
+      headers:{token:storage.getItem("token")}
+    })
+    .then(response=>{
+      if(response.data.code==0){
+      }
+      else{
+        alert(response.data.message);
+      }
+    })
+    .catch(error=>{
+      console.log(error);
+    })
+  }
 }
+
+//set视频地址
+function JsSubmit2_2_0(){
+  var url1 = videoURL+"/resources/2-2-2.mp4";
+  var url2 = videoURL+"/resources/2-2-3.mp4";
+  gameInstance.SendMessage("GUI","setURLs",url1+'~'+url2);
+}
+
+//已完成下载bvh文件modal
 function JsSubmit2_2_1(){
-  console.log("跳转链接");
+  var button = document.getElementById("openModal");
+  button.click();
 }
+
+//已完成上传bvh文件
 function JsSubmit2_2_2(){
   //提交文件，回传名字，调unity中onLoadBVH(string url=path~name)
-  console.log("上传bvh文件");
-  var url = "http://117.51.146.35:8079/resources/bvh/gesture_etc-10-snip_nail.bvh~gesture_etc-10-snip_nail";
-  var name = "gesture_etc-10-snip_nail";
-  gameInstance.SendMessage("GUI","onLoadBVH",url+'~'+name);
+  var fileInput = document.getElementById("bvhFile");
+  fileInput.click();
+  console.log("上传bvh文件"); 
 }
+//已完成2—2—2传输bvh文件并调用webgl接口创建模型
+function bvhFileLoad(ele){
+  var storage=window.sessionStorage;
+  var form = new FormData();
+  var file = $(ele)[0].files[0];
+  form.append("file",file);
+  if(storage){
+    axios.post(globalURL+'/score/bvhFileUpLoad',form,{
+      headers:{
+        token:storage.getItem("token")
+      }
+    })
+    .then(response=>{
+      if(response.data.code==0){
+        var url = videoURL+"/resources/bvh/"+storage.getItem("name")+".bvh";
+        var name = storage.getItem("name");
+        gameInstance.SendMessage("GUI","onLoadBVH",url+'~'+name);
+        alert("上传成功");
+      }
+      else{
+        alert(response.data.message);
+      }
+    })
+    .catch(error=>{
+      console.log(error);
+    })
+  }
+}
+//已完成iscomplete
 function JsSubmit2_2_3Sql(j){
-  //提交旋转值并记录完成
-  console.log(j);
+  var storage=window.sessionStorage;
+  eval("var tmp="+j); 
+  let submitParams = new URLSearchParams();
+  var answer="";
+  //TODO
+  var array = tmp.BoneRotates;
+  for(var i = 0;i<56;i++){
+    answer+=(array[i].toString()+"^");
+  }
+  answer+=array[56].toString();
+  //TODO
+  submitParams.append("answer223",answer);
+
+  if(storage){
+    //TODO
+    axios.post(globalURL+'/score/submit2-2-3',submitParams,{
+      headers:{token:storage.getItem("token")}
+    })
+    .then(response=>{
+      if(response.data.code==0){
+      }
+      else{
+        alert(response.data.message);
+      }
+    })
+    .catch(error=>{
+      console.log(error);
+    })
+  }
 }
 //TODO
 function JsSubmit2_3_1Sql(j){
   //提交90个dropdown值
+  console.log(j);
+}
+//TODO
+function JsSubmit2_3_2Sql(j){
+  //提交18个角标值
+  console.log(j);
+}
+//TODO
+function JsSubmit2_3_3Sql(j){
+  //提交72个角标值，设置iscomplete
   console.log(j);
 }
 //TODO
@@ -422,10 +596,7 @@ function createTable(data){
       if(data.iscomplete11){
         td.innerHTML = timestampToTime(data.updateTime11);
         td = tr.insertCell(tr.cells.length);
-        var scores = data.score111.split('^');
-        var score = 0;
-        if(data.iscomplete11)score = 100;
-        td.innerHTML = score;
+        td.innerHTML = 100;
       }
       else{
         td.innerHTML ="未提交";
@@ -474,7 +645,47 @@ function createTable(data){
         td.innerHTML ="未提交";
         td = tr.insertCell(tr.cells.length);
       }
-      
+
+      tr = table.insertRow(table.rows.length);
+      td = tr.insertCell(tr.cells.length);
+      td.innerHTML = "2-1";
+      td = tr.insertCell(tr.cells.length);
+      td.innerHTML = "<a href = '../2-2/index.html'>动作捕捉数据的获取与认知实验</a>";
+      td = tr.insertCell(tr.cells.length);
+      if(data.iscomplete22){
+        td.innerHTML = timestampToTime(data.updateTime22);
+        td = tr.insertCell(tr.cells.length);
+        td.innerHTML = 100;
+      }
+      else{
+        td.innerHTML ="未提交";
+        td = tr.insertCell(tr.cells.length);
+      }
+
+      // tr = table.insertRow(table.rows.length);
+      // td = tr.insertCell(tr.cells.length);
+      // td.innerHTML = "2-2";
+      // td = tr.insertCell(tr.cells.length);
+      // td.innerHTML = "<a href = '../2-2/index.html'>虚拟人运动学求解基础</a>";
+      // td = tr.insertCell(tr.cells.length);
+      // // if(data.score111){
+      // if(data.iscomplete21){
+      //   td.innerHTML = timestampToTime(data.updateTime21);
+      //   td = tr.insertCell(tr.cells.length);
+      //   var scores1 = data.score211.split('^');
+      //   var scores2 = data.score212.split('^');
+      //   var scores3 = data.score213.split('^');
+      //   var score1 = parseInt(scores1[0]);
+      //   var score2 = parseInt(scores2[0]);
+      //   var score3 = parseInt(scores3[0]);
+      //   score = (score1+score2+score3)/18*100;
+      //   td.innerHTML = Math.round(score*100)/100;
+      // }
+      // else{
+      //   td.innerHTML ="未提交";
+      //   td = tr.insertCell(tr.cells.length);
+      // }
+
       //td.innerHTML = "测试";
       document.querySelector("#tb").appendChild(table);
     }
