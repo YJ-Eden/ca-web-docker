@@ -9,7 +9,6 @@ document.head.appendChild(axiosScript);
 //切换使用环境时切换axios请求的url
 //var globalURL='http://127.0.0.1:8088/user';
 var globalURL='http://117.51.146.35:8088/user';
-//var globalURL='http://117.51.146.35:8087/user';
 
 //切换8079、8080时视频地址
 var videoURL = "http://117.51.146.35:8079";
@@ -410,24 +409,108 @@ function JsSubmit2_2_3Sql(j){
     })
   }
 }
-//TODO
+//已完成
 function JsSubmit2_3_1Sql(j){
   //提交90个dropdown值
-  console.log(j);
+  var storage=window.sessionStorage;
+  eval("var tmp="+j); 
+  let submitParams = new URLSearchParams();
+  var answer="";
+  //TODO
+  var array = tmp.joints;
+  for(var i = 0;i<89;i++){
+    answer+=(array[i].toString()+"^");
+  }
+  answer+=array[89].toString();
+  //TODO
+  submitParams.append("answer231",answer);
+
+  if(storage){
+    //TODO
+    axios.post(globalURL+'/score/submit2-3-1',submitParams,{
+      headers:{token:storage.getItem("token")}
+    })
+    .then(response=>{
+      if(response.data.code==0){
+      }
+      else{
+        alert(response.data.message);
+      }
+    })
+    .catch(error=>{
+      console.log(error);
+    })
+  }
 }
-//TODO
+//已完成
 function JsSubmit2_3_2Sql(j){
   //提交18个角标值
-  console.log(j);
+  var storage=window.sessionStorage;
+  eval("var tmp="+j); 
+  let submitParams = new URLSearchParams();
+  var answer="";
+  //TODO
+  var array = tmp.labels;
+  for(var i = 0;i<17;i++){
+    answer+=(array[i].toString()+"^");
+  }
+  answer+=array[17].toString();
+  //TODO
+  submitParams.append("answer232",answer);
+
+  if(storage){
+    //TODO
+    axios.post(globalURL+'/score/submit2-3-2',submitParams,{
+      headers:{token:storage.getItem("token")}
+    })
+    .then(response=>{
+      if(response.data.code==0){
+      }
+      else{
+        alert(response.data.message);
+      }
+    })
+    .catch(error=>{
+      console.log(error);
+    })
+  }
 }
-//TODO
+//已完成iscomplete
 function JsSubmit2_3_3Sql(j){
   //提交72个角标值，设置iscomplete
-  console.log(j);
+  var storage=window.sessionStorage;
+  eval("var tmp="+j); 
+  let submitParams = new URLSearchParams();
+  var answer="";
+  //TODO
+  var array = tmp.labels;
+  for(var i = 0;i<71;i++){
+    answer+=(array[i].toString()+"^");
+  }
+  answer+=array[71].toString();
+  //TODO
+  submitParams.append("answer233",answer);
+
+  if(storage){
+    //TODO
+    axios.post(globalURL+'/score/submit2-3-3',submitParams,{
+      headers:{token:storage.getItem("token")}
+    })
+    .then(response=>{
+      if(response.data.code==0){
+      }
+      else{
+        alert(response.data.message);
+      }
+    })
+    .catch(error=>{
+      console.log(error);
+    })
+  }
 }
 //TODO
 function JsSubmit2_5_1Sql(j){
-  //提交90个dropdown值
+  //
   console.log(j);
 }
 
@@ -506,6 +589,9 @@ function testToken(pathname,x=true){
     if(x==true)window.location.href='../LogIn/index.html';
     else window.location.href='webpages/LogIn/index.html';
   }
+  // if(pathname=="/webpages/1-1/index.html")alert("本实验已停止提交！\n目前可正常操作实验流程，但无法再修改成绩。");
+  // if(pathname=="/webpages/1-2/index.html")alert("本实验已停止提交！\n目前可正常操作实验流程，但无法再修改成绩。");
+  // if(pathname=="/webpages/1-3/index.html")alert("本实验已停止提交！\n目前可正常操作实验流程，但无法再修改成绩。");
 }
 //登出
 function logOut(x=true){
@@ -599,7 +685,7 @@ function createTable(data){
         td.innerHTML = 100;
       }
       else{
-        td.innerHTML ="未提交";
+        td.innerHTML ="未完成";
         td = tr.insertCell(tr.cells.length);
       }
 
@@ -620,7 +706,7 @@ function createTable(data){
         td.innerHTML = Math.round(score*100)/100;
       }
       else{
-        td.innerHTML ="未提交";
+        td.innerHTML ="未完成";
         td = tr.insertCell(tr.cells.length);
       }
 
@@ -642,7 +728,7 @@ function createTable(data){
         td.innerHTML = Math.round(score*100)/100;
       }
       else{
-        td.innerHTML ="未提交";
+        td.innerHTML ="未完成";
         td = tr.insertCell(tr.cells.length);
       }
 
@@ -658,33 +744,57 @@ function createTable(data){
         td.innerHTML = 100;
       }
       else{
-        td.innerHTML ="未提交";
+        td.innerHTML ="未完成";
         td = tr.insertCell(tr.cells.length);
       }
 
-      // tr = table.insertRow(table.rows.length);
-      // td = tr.insertCell(tr.cells.length);
-      // td.innerHTML = "2-2";
-      // td = tr.insertCell(tr.cells.length);
-      // td.innerHTML = "<a href = '../2-2/index.html'>虚拟人运动学求解基础</a>";
-      // td = tr.insertCell(tr.cells.length);
-      // // if(data.score111){
-      // if(data.iscomplete21){
-      //   td.innerHTML = timestampToTime(data.updateTime21);
-      //   td = tr.insertCell(tr.cells.length);
-      //   var scores1 = data.score211.split('^');
-      //   var scores2 = data.score212.split('^');
-      //   var scores3 = data.score213.split('^');
-      //   var score1 = parseInt(scores1[0]);
-      //   var score2 = parseInt(scores2[0]);
-      //   var score3 = parseInt(scores3[0]);
-      //   score = (score1+score2+score3)/18*100;
-      //   td.innerHTML = Math.round(score*100)/100;
-      // }
-      // else{
-      //   td.innerHTML ="未提交";
-      //   td = tr.insertCell(tr.cells.length);
-      // }
+      tr = table.insertRow(table.rows.length);
+      td = tr.insertCell(tr.cells.length);
+      td.innerHTML = "2-2";
+      td = tr.insertCell(tr.cells.length);
+      td.innerHTML = "<a href = '../2-1/index.html'>虚拟人运动学求解基础</a>";
+      td = tr.insertCell(tr.cells.length);
+      // if(data.score111){
+      if(data.iscomplete21){
+        td.innerHTML = timestampToTime(data.updateTime21);
+        td = tr.insertCell(tr.cells.length);
+        var scores1 = data.score211.split('^');
+        var scores2 = data.score212.split('^');
+        var scores3 = data.score213.split('^');
+        var score1 = parseInt(scores1[0]);
+        var score2 = parseInt(scores2[0]);
+        var score3 = parseInt(scores3[0]);
+        score = (score1+score2+score3)/18*100;
+        td.innerHTML = Math.round(score*100)/100;
+      }
+      else{
+        td.innerHTML ="未完成";
+        td = tr.insertCell(tr.cells.length);
+      }
+
+      tr = table.insertRow(table.rows.length);
+      td = tr.insertCell(tr.cells.length);
+      td.innerHTML = "2-3";
+      td = tr.insertCell(tr.cells.length);
+      td.innerHTML = "<a href = '../2-3/index.html'>FK（正向运动学）虚拟人运动重构</a>";
+      td = tr.insertCell(tr.cells.length);
+      // if(data.score111){
+      if(data.iscomplete23){
+        td.innerHTML = timestampToTime(data.updateTime23);
+        td = tr.insertCell(tr.cells.length);
+        var scores1 = data.score231.split('^');
+        var scores2 = data.score232.split('^');
+        var scores3 = data.score233.split('^');
+        var score1 = parseInt(scores1[0]);
+        var score2 = parseInt(scores2[0]);
+        var score3 = parseInt(scores3[0]);
+        score = (score1+score2+score3)/180*100;
+        td.innerHTML = Math.round(score*100)/100;
+      }
+      else{
+        td.innerHTML ="未完成";
+        td = tr.insertCell(tr.cells.length);
+      }
 
       //td.innerHTML = "测试";
       document.querySelector("#tb").appendChild(table);
