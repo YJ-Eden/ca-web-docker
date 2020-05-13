@@ -451,10 +451,10 @@ function JsSubmit2_3_2Sql(j){
   var answer="";
   //TODO
   var array = tmp.labels;
-  for(var i = 0;i<17;i++){
+  for(var i = 0;i<27;i++){
     answer+=(array[i].toString()+"^");
   }
-  answer+=array[17].toString();
+  answer+=array[27].toString();
   //TODO
   submitParams.append("answer232",answer);
 
@@ -484,10 +484,10 @@ function JsSubmit2_3_3Sql(j){
   var answer="";
   //TODO
   var array = tmp.labels;
-  for(var i = 0;i<71;i++){
+  for(var i = 0;i<63;i++){
     answer+=(array[i].toString()+"^");
   }
-  answer+=array[71].toString();
+  answer+=array[63].toString();
   //TODO
   submitParams.append("answer233",answer);
 
@@ -788,7 +788,7 @@ function createTable(data){
         var score1 = parseInt(scores1[0]);
         var score2 = parseInt(scores2[0]);
         var score3 = parseInt(scores3[0]);
-        score = (score1+score2+score3)/180*100;
+        score = (score1+score2+score3)/182*100;
         td.innerHTML = Math.round(score*100)/100;
       }
       else{
