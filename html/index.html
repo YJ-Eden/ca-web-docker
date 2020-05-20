@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>虚拟人运动控制仿真实验</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="css/modern-business.css" rel="stylesheet">
+  <link href="css/bootstrapValidator.css" rel="stylesheet">
+  <script src="vendor/js-md5/build/md5.min.js"></script>
+  <script src="https://cdn.bootcss.com/axios/0.19.2/axios.min.js"></script>
+  <script src="vendor/eden/eden.js"></script>
+  <script>
+    window.onload=testToken(location.pathname,false);
+  </script>
+
+</head>
+
+<!-----验证
+<body onload="load();">
+---->
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">虚拟人运动控制仿真实验</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href = "#" data-toggle="modal" data-target="#myModal">修改密码</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" onclick="logOut(false);" href = "#">登出</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 模态框（Modal） -->
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="myModalLabel">
+            修改密码
+          </h4>
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+            &times;
+          </button>
+          
+        </div>
+        <div class="modal-body">
+          <div class="row">
+      <div class="col-lg-10 mb-4">
+        <form name="sentMessage" id="contactForm" novalidate onsubmit="ChangePassword();" class="form-horizontal">
+          <div class="control-group form-group">
+            <div class="controls">
+              <label>密码格式：6～15位大小写字母、数字、下划线</label>
+            </div>
+          </div>
+          <div class="control-group form-group">
+            <div class="controls">
+              <label>输入密码：</label>
+              <input type="password" class="form-control" id="password" name="password" required data-validation-required-message="Please enter your password.">
+              <p class="help-block"></p>
+            </div>
+          </div>
+          <div class="control-group form-group">
+            <div class="controls">
+              <label>再输一遍：</label>
+              <input type="password" class="form-control" id="passwordTwo" name="passwordTwo" required data-validation-required-message="Please enter your password again.">
+            </div>
+          </div>
+<!--           <button type="submit" class="btn btn-primary" id="sendMessageButton">提交更改</button> -->
+        </form>
+      </div>
+      
+        </div>
+
+    </div>
+        <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" id="submitPassword">提交更改</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+  </div>
+
+  <header>
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+      <ol class="carousel-indicators">
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner" role="listbox">
+        <!-- Slide One - Set the background image for this slide in the line below -->
+        <div class="carousel-item active" style="background-image: url('./resources/头图/头图1.jpg')">
+          <div class="carousel-caption d-none d-md-block">
+          <!--
+            <h3>First Slide</h3>
+            <p>This is a description for the first slide.</p>
+            -->
+          </div>
+        </div>
+        <!-- Slide Two - Set the background image for this slide in the line below -->
+        <div class="carousel-item" style="background-image: url('./resources/头图/头图3.jpg')">
+          <div class="carousel-caption d-none d-md-block">
+          <!--
+            <h3>Second Slide</h3>
+            <p>This is a description for the second slide.</p>
+            -->
+          </div>
+        </div>
+        <!-- Slide Three - Set the background image for this slide in the line below -->
+        <div class="carousel-item" style="background-image: url('./resources/头图/头图2.jpg')">
+          <div class="carousel-caption d-none d-md-block">
+          </div>
+        </div>
+      </div>
+      <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+  </header>
+
+
+  <!-- Page Content -->
+  <div class="container">
+
+    <!-- Portfolio Section 
+
+    <hr>
+
+    <a href="./resources/download.zip" download = "download"><h5><li>点击此处，下载实验报告模板</li></h5></a>
+
+    <hr>
+
+    -->
+    
+    <hr>
+
+    <a href="webpages/Score/index.html"><h5><li>实验报告成绩查看</li></h5></a>
+
+    <hr>
+
+   <!-- 知识点 -->
+    <div class="row">
+      <div class="col-lg-6">
+        <h2>
+        <a href="webpages/1/index.html">知识点</a>
+        </h2>
+        <br/>
+        <br/>
+        <ul>
+          <li><a href="webpages/1-1/index.html">3D数学空间位姿</a>（已停止提交，保留实验功能）</li>
+          <li><a href="webpages/1-2/index.html">坐标变换</a>（已停止提交，保留实验功能）</li>
+          <li><a href="webpages/1-3/index.html">空间变换综合实验</a>（已停止提交，保留实验功能）</li>
+          <br/>
+          <br/>
+        </ul>
+        <p><strong>实验目的：</strong>了解计算机动画的数据基础，包括空间坐标变换、动画插值算法等。</p>
+      </div>
+      <div class="col-lg-6">
+        <a href="webpages/1/index.html"><img class="img-fluid rounded" src="resources/实验头图/1-1.jpg" alt=""></a>
+      </div>
+    </div>
+    <!-- /.row -->
+
+    <hr>
+
+    <!-- 原理 -->
+    <div class="row">
+      <div class="col-lg-6">
+        <h2>
+        <a href="webpages/2/index.html">原理</a>
+        </h2>
+        <br/>
+        <ul>
+          <li><a href="webpages/2-2/index.html">动作捕捉数据的获取与认知实验</a>（已停止提交，保留实验功能）</li>
+          <li><a href="webpages/2-1/index.html">虚拟人运动学求解基础</a>（2020-5-26 09:50停止提交）</li>
+          <li><a href="webpages/2-3/index.html">FK（正向运动学）虚拟人运动重构</a>（2020-5-26 09:50停止提交）</li>
+          <br/>
+          <br/>
+        </ul>
+        <br/>
+        <p><strong>实验目的：</strong>熟悉人体动作捕捉技术，熟练运用动作捕捉设备获取人体动作并进行重建。</p>
+      </div>
+      <div class="col-lg-6">
+        <a href="webpages/2/index.html"><img class="img-fluid rounded" src="resources/实验头图/2-1.jpg" alt=""></a>
+      </div>
+    </div>
+    <!-- /.row -->
+    <hr>
+
+    <!-- 实践 -->
+    <div class="row">
+      <div class="col-lg-6">
+        <h2>
+        <a href="webpages/3/index.html">实践</a>
+        </h2>
+        <br/>
+        <br/>
+        <ul>
+          <li><a href="webpages/3-1/index.html">FK的递归求解、IK的CCD求解</a>（代码下载）</li>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+        </ul>
+        <br/>
+        <p><strong>实验目的：</strong>理解正向运动学原理，掌握基于正向运动学的人体控制技术；理解逆向运动学原理，掌握基于逆向运动学的虚拟人控制技术。</p>
+      </div>
+      <div class="col-lg-6">
+        <a href="webpages/3/index.html"><img class="img-fluid rounded" src="resources/实验头图/3-1.jpg" alt=""></a>
+      </div>
+    </div>
+    <!-- /.row -->
+    
+    <!-- /.row -->
+
+        <!-- Portfolio Section -->
+
+    <hr>
+
+  </div>
+  <!-- /.container -->
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="vendor/js/bootstrapValidator.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('#contactForm').bootstrapValidator({
+        message: 'This value is not valid',
+//        live: 'disabled',
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            password: {
+                validators: {
+                    notEmpty: {
+                        message: '--此处不能为空'
+                    },
+                    regexp: {
+                        regexp: /^[a-zA-Z0-9_]+$/,
+                        message: '--只能输入字母、数字、下划线'
+                    },
+                    stringLength : {
+                            min : 6,
+                            max : 15,
+                            message : '--长度为6-15位'
+                    }
+                }
+            },
+            passwordTwo: {
+                validators: {
+                    notEmpty: {
+                        message: '--此处不能为空'
+                    },
+                    identical: {
+                        field: 'password',
+                        message: '--两次输入不一致'
+                    }
+                }
+            }
+        }
+      });
+    });
+    $("#submitPassword").on("click",function(){
+      var bootstrapValidator = $('#contactForm').data('bootstrapValidator');
+      bootstrapValidator.validate();
+      if(bootstrapValidator.isValid()){
+        $("#contactForm").submit();
+      }
+      else {
+        alert("修改失败，请检查密码格式～");
+        return;
+      }
+    });
+  </script>
+</body>
+
+</html>
