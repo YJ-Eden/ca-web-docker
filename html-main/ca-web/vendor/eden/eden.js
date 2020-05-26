@@ -9,8 +9,8 @@ document.head.appendChild(axiosScript);
 
 /*定义全局变量*/
 //切换使用环境时切换axios请求的url
-//var globalURL='http://127.0.0.1:8088/user';
-var globalURL='http://117.51.146.35:8088/user';
+var globalURL='http://127.0.0.1:8088/user';
+//var globalURL='http://117.51.146.35:8088/user';
 
 //切换8079、8080时视频地址
 var videoURL = "http://117.51.146.35:8079";
@@ -514,8 +514,40 @@ function JsSubmit2_3_3Sql(j){
 }
 //TODO
 function JsSubmit2_5_1Sql(j){
-  //
-  console.log(j);
+  var storage=window.sessionStorage;
+  eval("var tmp="+j); 
+  let submitParams = new URLSearchParams();
+  var answer241="";
+  for(var i = 0;i<12;i++){
+    answer241+=(tmp.arrOrder[i].toString()+"^");
+  }
+  for(var i = 0;i<5;i++){
+    answer241+=(tmp.arrTF[i].toString()+"^");
+  }
+  answer241+=tmp.arrTF[5].toString();
+  submitParams.append("answer241",answer241);
+  /*
+  name="answer1212";
+  for(var i=0;i<9;i++){
+    submitParams.append(name+i.toString(),tmp.arrRot[i]);
+  }
+  */
+  if(storage){
+    axios.post(globalURL+'/score/submit2-4-1',submitParams,{
+      headers:{token:storage.getItem("token")}
+    })
+    .then(response=>{
+      if(response.data.code==0){
+      }
+      else{
+        alert(response.data.message);
+      }
+    })
+    .catch(error=>{
+      console.log(error);
+    })
+  }
+  //console.log(typeof arr0);
 }
 //LogIn
 /*submit注册+提示
